@@ -47,10 +47,13 @@
             <h4 class="modal-title" id="otsikko" style="color:#325e60"></h4>
           </div>
           <div class="modal-body">
-            <button type="button" class="btn btn-success btn-block btn-lg" onclick="merkkaa('list-group-item-success')">Vihreä</button>
-            <button type="button" class="btn btn-danger btn-block btn-lg" onclick="merkkaa('list-group-item-danger')">Punainen</button>
-            <button type="button" class="btn btn-warning btn-block btn-lg" onclick="merkkaa('list-group-item-warning')">Keltainen</button>
-            <button type="button" class="btn btn-info btn-block btn-lg" onclick="merkkaa('list-group-item-info')">Sininen</button>
+            <div class="list-group lead" id="koodit">
+              <button type="button" class="list-group-item list-group-item-success" onclick="merkkaa('list-group-item-success')">Vihreä</button>
+              <button type="button" class="list-group-item list-group-item-info" onclick="merkkaa('list-group-item-info')">Sininen</button>
+              <button type="button" class="list-group-item list-group-item-warning" onclick="merkkaa('list-group-item-warning')">Keltainen</button>
+              <button type="button" class="list-group-item list-group-item-danger" onclick="merkkaa('list-group-item-danger')">Punainen</button>
+              <button type="button" class="list-group-item" onclick="merkkaa('')">empy</button>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Sulje</button>
