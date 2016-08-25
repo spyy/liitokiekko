@@ -1,12 +1,12 @@
 
 
 
-
 function createTrack(name, from, to) {
     var key = Date.now();
     window.localStorage.setItem(key.toString(), name);
     window.localStorage.setItem(key + '_from', from);
     window.localStorage.setItem(key + '_to', to);
+    window.localStorage.setItem(key + '_result', '');
         
     var i;
     for (i = Number(from); i <= Number(to); i++) {
@@ -38,12 +38,14 @@ function getTrackTo(key) {
     return window.localStorage.getItem(key);
 }
 
-
-function getWeekDay() {
-    const WEEK_DAYS = ['SU', 'MA', 'TI', 'KE', 'TO', 'PE', 'LA'];
+function getDate() {
     var d = new Date();
+    var day = d.getDate();
+    var month = d.getMonth() + 1;
+    day = day > 9 ? day : '0' + day;
+    month = month > 9 ? month : '0' + month;
     
-    return WEEK_DAYS[d.getDay()];
+    return day + '.' + month;
 }
 
 function getDateAndTime() {
@@ -56,7 +58,6 @@ function getDateAndTime() {
     
     return day + '.' + month + ' ' + hours + ':' + minutes;
 }
-
 
 function getTracks() {            
     var res = [];
@@ -86,12 +87,107 @@ function getSelectedTrack() {
 
 function setLane(track, lane, value) {
     var key = track + '__' + lane;
-    
     window.localStorage.setItem(key, value);
 }
-
 
 function getLane(track, lane) {
     var key = track + '__' + lane;
     return window.localStorage.getItem(key);
+}
+
+function setTrackResult(track, result) {
+    var key = track + '_result';
+    var value = getDateAndTime() + ' ' + result;
+    window.localStorage.setItem(key, value);
+}
+
+function getTrackResult(track) {
+    var key = track + '_result';
+    return window.localStorage.getItem(key);
+}
+
+function getResultName(color) {
+    var result;
+    
+    switch (color) {
+        case 'list-group-item-info': 
+            result = 'Birdie';
+            break;
+        case 'list-group-item-success': 
+            result = 'Bogey';
+            break;
+        case 'list-group-item-warning': 
+            result = 'Double';
+            break;
+        case 'list-group-item-danger': 
+            result = 'Triple';
+            break;
+        default:
+            result = 'Par';
+            break;
+    }
+    
+    return result;
+}
+
+function colorToNumber(color) {
+    var result;
+    
+    switch (color) {
+        case 'list-group-item-info': 
+            result = -1;
+            break;
+        case 'list-group-item-success': 
+            result = 1;
+            break;
+        case 'list-group-item-warning': 
+            result = 2;
+            break;
+        case 'list-group-item-danger': 
+            result = 3;
+            break;
+        default:
+            result = 0;
+            break;
+    }
+    
+    return result;
+}
+
+function createResult(track) {
+    var result = 0;
+    var from = getTrackFrom(track);
+    var to = getTrackTo(track);
+    var i;
+    
+    for (i = Number(from); i <= Number(to); i++) {
+      var color = getLane(track, i);
+      var number = colorToNumber(color);
+      result += number;
+    }
+    
+    var name = getTrackName(track);
+    var timestamp = Date.now();
+    var key = timestamp.toString() + '___result';
+    var value = getDate() + ' ' + name + ': ' + result;
+    
+    window.localStorage.setItem(key, value);
+    
+    return value;
+}
+
+function getResults() {            
+    var res = [];
+    
+    var i;
+    for (i = 0; i < window.localStorage.length; i++) {
+        var key = window.localStorage.key(i);
+        
+        if (key.search('___result') != -1) {
+            var value = window.localStorage.getItem(key);
+            res.push(value);
+        }
+    }
+    
+    return res;
 }

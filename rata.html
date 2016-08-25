@@ -15,9 +15,13 @@
   </head>
 
   <body>
+    
     <div class="site-wrapper">
+      
       <div class="site-wrapper-inner">
+        
         <div class="cover-container">
+          
           <div class="masthead">
             <div class="inner">
               <h3 class="masthead-brand" id="brand">liitokiekko.net</h3>
@@ -30,13 +34,20 @@
               </nav>
             </div>
           </div>
+          
           <div class="inner cover">
             <div class="list-group lead text-left" id="vaylat">
               <!-- filled in script -->
             </div>
+            <div>
+              <p><button type="button" class="btn btn-default btn-block btn-lg" onclick="talleta()">Talleta tulos</button></p>
+            </div>
           </div>
+          
         </div>
+        
       </div>
+      
     </div>
       
     <!-- Modal -->
@@ -48,11 +59,11 @@
           </div>
           <div class="modal-body">
             <div class="list-group lead">
-              <button type="button" class="list-group-item list-group-item-success" onclick="merkkaa('list-group-item-success')">Vihreä</button>
-              <button type="button" class="list-group-item list-group-item-info" onclick="merkkaa('list-group-item-info')">Sininen</button>
-              <button type="button" class="list-group-item list-group-item-warning" onclick="merkkaa('list-group-item-warning')">Keltainen</button>
-              <button type="button" class="list-group-item list-group-item-danger" onclick="merkkaa('list-group-item-danger')">Punainen</button>
-              <button type="button" class="list-group-item" onclick="merkkaa('')">empy</button>
+              <button type="button" class="list-group-item list-group-item-info" onclick="merkkaa('list-group-item-info')">Birdie</button>
+              <button type="button" class="list-group-item" onclick="merkkaa('')">Par</button>
+              <button type="button" class="list-group-item list-group-item-success" onclick="merkkaa('list-group-item-success')">Bogey</button>
+              <button type="button" class="list-group-item list-group-item-warning" onclick="merkkaa('list-group-item-warning')">Double</button>
+              <button type="button" class="list-group-item list-group-item-danger" onclick="merkkaa('list-group-item-danger')">Triple</button>
             </div>
           </div>
           <div class="modal-footer">
@@ -66,13 +77,15 @@
       window.selectedLane = 0;
       window.selectedTrack = window.getSelectedTrack();
       
-      printTrack(window.selectedTrack);
+      printTrack();
       
-      function printTrack(track) {
+      function printTrack() {
+        var track = window.selectedTrack; 
         var from = window.getTrackFrom(track);
         var to = window.getTrackTo(track);
         var trackName = window.getTrackName(track);
-        var inner = '<a href="#" class="list-group-item active">' + trackName + '</a>';
+        var trackResult = window.getTrackResult(track);
+        var inner = '<a href="#" class="list-group-item active">' + '<span class="badge">' + trackResult + '</span>' + trackName + '</a>';
         var i;
         for (i = Number(from); i <= Number(to); i++) {
           var value = window.getLane(window.selectedTrack, i);
@@ -91,6 +104,11 @@
       function merkkaa(color) {
         window.setLane(window.selectedTrack, window.selectedLane, color);
         window.location.reload(false);
+      }
+      
+      function talleta() {
+        var result = window.createResult(window.selectedTrack);
+        window.setTrackResult(result);
       }
     </script>
     
