@@ -6,7 +6,7 @@
     
     <link rel="icon" href="favicon.ico">
     
-    <title>Alueet</title>
+    <title>Frisbeegolf</title>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="bootstrap/css/cover2.css" rel="stylesheet" type="text/css">
@@ -24,19 +24,19 @@
 
           <div class="masthead clearfix">
             <div class="inner">
-              <h3 class="masthead-brand">alueet.net</h3>
+              <h3 class="masthead-brand">liitokiekko.net</h3>
               <nav>
                 <ul class="nav masthead-nav">                  
                   <li><a href="uusi.html">Uusi</a></li>
-                  <li><a href="poista.html">Poista</a></li>
-                  <li class="active"><a href="#">Alueet</a></li>
+                  <li><a href="tulokset.html">Tulokset</a></li>
+                  <li class="active"><a href="#">Radat</a></li>
                 </ul>
               </nav>
             </div>
           </div>
 
           <div class="inner cover">
-            <div class="lead" id="alueet">
+            <div class="lead" id="radat">
               <!-- filled by script -->
             </div>
           </div>
@@ -51,20 +51,20 @@
     <script>
       var innerHTML = '';
       
-      var areas = window.getAreas();
+      var tracks = window.getTracks();
       
       var i;
-      for (i = 0; i < areas.length; i++) {
-        var area = areas[i];
-        var name = window.getAreaName(areas[i]);
-        innerHTML += '<p><button type="button" class="btn btn-lg btn-default" onclick="valitse(' + area + ')">' + name + '</button></p>';
+      for (i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+        var name = window.getTrackName(tracks[i]);
+        innerHTML += '<p><button type="button" class="btn btn-lg btn-default" onclick="valitse(' + track + ')">' + name + '</button></p>';
       }
           
-      document.getElementById('alueet').innerHTML = innerHTML;
+      document.getElementById('radat').innerHTML = innerHTML;
       
-      function valitse(area) {
-        window.setSelectedArea(area);
-        window.location.assign('alue.html');
+      function valitse(key) {
+        window.setSelectedTrack(key);
+        window.location.assign('rata.html');
       }
     </script>
     
