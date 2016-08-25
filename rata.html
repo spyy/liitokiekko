@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" href="favicon.ico">
+    
+    <title>Alueet</title>
+    
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap/css/cover2.css" rel="stylesheet" type="text/css">
+    
+    <script type="text/javascript" src="js/storage.js"></script>
+  </head>
+
+  <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="masthead">
+            <div class="inner">
+              <h3 class="masthead-brand" id="brand">alueet.net</h3>
+              <nav>
+                <ul class="nav masthead-nav">                  
+                  <li><a href="uusi.html">Uusi</a></li>
+                  <li><a href="poista.html">Poista</a></li>
+                  <li><a href="alueet.html">Alueet</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="inner cover">
+            <div class="list-group lead text-left" id="alueet">
+              <!-- filled in script -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <!-- Modal -->
+    <div class="modal fade bs-example-modal-sm" id="myModal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="otsikko" style="color:#325e60"></h4>
+          </div>
+          <div class="modal-body">
+            <button type="button" class="btn btn-success btn-block btn-lg" onclick="merkkaa('list-group-item-success')">Vihreä</button>
+            <button type="button" class="btn btn-danger btn-block btn-lg" onclick="merkkaa('list-group-item-danger')">Punainen</button>
+            <button type="button" class="btn btn-warning btn-block btn-lg" onclick="merkkaa('list-group-item-warning')">Keltainen</button>
+            <button type="button" class="btn btn-info btn-block btn-lg" onclick="merkkaa('list-group-item-info')">Sininen</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Sulje</button>
+          </div>
+        </div>
+      </div>
+    </div>
+              
+    <script>
+      window.selectedDoor = 0;
+      window.selectedArea = window.getSelectedArea();
+      
+      printArea(window.selectedArea);
+      
+      function printArea(area) {
+        var from = window.getAreaFrom(area);
+        var to = window.getAreaTo(area);
+        var areaName = window.getAreaName(area);
+        var inner = '<a href="#" class="list-group-item active">' + areaName + '</a>';
+        var i;
+        for (i = Number(from); i <= Number(to); i++) {
+          var item = window.getDoor(window.selectedArea, i);
+          var values = item.split(" ");                
+                
+          if (values.length === 1) {
+            inner += '<button type="button" class="list-group-item ' + item + '" onclick="showModal(' + i + ');return false;">' + i + '</button>';        
+          } else {
+            var color = values[0];
+            var date = values[1];
+            var time = values[2];
+            var weekDay = values[3];
+            var content = i + '<span class="badge">' + date + ' ' + time + ' ' + weekDay + '</span>';
+            inner += '<button type="button" class="list-group-item ' + color + '" onclick="showModal(' + i + ');return false;">' + content + '</button>';
+          }
+        }
+        
+        document.getElementById("alueet").innerHTML += inner;  
+      }
+        
+      function showModal(door) {
+        window.selectedDoor = door;
+        document.getElementById('otsikko').innerHTML = 'Asunto ' + window.selectedDoor;
+        $('#myModal').modal('show');
+      }
+        
+      function merkkaa(color) {
+        window.setDoor(window.selectedArea, window.selectedDoor, color);
+        window.location.reload(false);
+      }
+    </script>
+    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+      
+  </body>
+</html>
