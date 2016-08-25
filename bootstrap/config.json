@@ -292,7 +292,7 @@
     "@list-group-bg": "#10332B",
     "@list-group-border": "#10332B",
     "@list-group-border-radius": "@border-radius-base",
-    "@list-group-hover-bg": "#f5f5f5",
+    "@list-group-hover-bg": "#10332B",
     "@list-group-active-color": "@component-active-color",
     "@list-group-active-bg": "@component-active-bg",
     "@list-group-active-border": "@list-group-active-bg",
@@ -421,5 +421,5 @@
     "collapse.js",
     "scrollspy.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=5f3e21f8e94a08646623e727d0415af2"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=63a17c3fb3488dfd8dc6c82d1725377b"
 }
