@@ -2,7 +2,7 @@
 
 
 
-function createArea(name, from, to) {
+function createTrack(name, from, to) {
     var key = Date.now();
     window.localStorage.setItem(key.toString(), name);
     window.localStorage.setItem(key + '_from', from);
@@ -17,24 +17,24 @@ function createArea(name, from, to) {
 }
 
 
-function removeArea(area) {
-    window.localStorage.removeItem(area);
+function removeTrack(key) {
+    window.localStorage.removeItem(key);
 }
 
 
-function getAreaName(key) {
+function getTrackName(key) {
     return window.localStorage.getItem(key);
 }
 
 
-function getAreaFrom(area) {
-    var key = area + '_from'
+function getTrackFrom(key) {
+    key = key + '_from'
     return window.localStorage.getItem(key);
 }
 
 
-function getAreaTo(area) {
-    var key = area + '_to'
+function getTrackTo(key) {
+    key = key + '_to'
     return window.localStorage.getItem(key);
 }
 
@@ -58,7 +58,7 @@ function getDateAndTime() {
 }
 
 
-function getAreas() {            
+function getTracks() {            
     var res = [];
     
     var i;
@@ -74,41 +74,24 @@ function getAreas() {
 }
 
 
-function getDoors(area) {            
-    var res = [];
-    
-    var i;
-    for (i = 0; i < window.localStorage.length; i++) {
-        var key = window.localStorage.key(i);
-        
-        if (key.search('_') === -1) {
-            res.push(key);
-        }
-    }
-    
-    return res;
+function setSelectedTrack(track) {
+    window.sessionStorage.selectedTrack = track;
 }
 
 
-function setSelectedArea(area) {
-    window.sessionStorage.selectedArea = area;
+function getSelectedTrack() {
+    return window.sessionStorage.selectedTrack;
 }
 
 
-function getSelectedArea() {
-    return window.sessionStorage.selectedArea;
-}
-
-
-function setDoor(area, door, color) {
-    var key = area + '__' + door;
-    var value = color + ' ' + getDateAndTime() + ' ' + getWeekDay();
+function setLane(track, lane, value) {
+    var key = track + '__' + lane;
     
     window.localStorage.setItem(key, value);
 }
 
 
-function getDoor(area, door) {
-    var key = area + '__' + door;
+function getLane(track, lane) {
+    var key = track + '__' + lane;
     return window.localStorage.getItem(key);
 }

@@ -6,7 +6,7 @@
     
     <link rel="icon" href="favicon.ico">
     
-    <title>Alueet</title>
+    <title>Frisbeegolf</title>
     
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="bootstrap/css/cover2.css" rel="stylesheet" type="text/css">
@@ -20,18 +20,18 @@
         <div class="cover-container">
           <div class="masthead">
             <div class="inner">
-              <h3 class="masthead-brand" id="brand">alueet.net</h3>
+              <h3 class="masthead-brand" id="brand">liitokiekko.net</h3>
               <nav>
                 <ul class="nav masthead-nav">                  
                   <li><a href="uusi.html">Uusi</a></li>
-                  <li><a href="poista.html">Poista</a></li>
-                  <li><a href="alueet.html">Alueet</a></li>
+                  <li><a href="tulokset.html">Tulokset</a></li>
+                  <li><a href="radat.html">Radat</a></li>
                 </ul>
               </nav>
             </div>
           </div>
           <div class="inner cover">
-            <div class="list-group lead text-left" id="alueet">
+            <div class="list-group lead text-left" id="radat">
               <!-- filled in script -->
             </div>
           </div>
@@ -60,44 +60,33 @@
     </div>
               
     <script>
-      window.selectedDoor = 0;
-      window.selectedArea = window.getSelectedArea();
+      window.selectedLane = 0;
+      window.selectedTrack = window.getSelectedTrack();
       
-      printArea(window.selectedArea);
+      printTrack(window.selectedTrack);
       
-      function printArea(area) {
-        var from = window.getAreaFrom(area);
-        var to = window.getAreaTo(area);
-        var areaName = window.getAreaName(area);
-        var inner = '<a href="#" class="list-group-item active">' + areaName + '</a>';
+      function printTrack(track) {
+        var from = window.getTrackFrom(track);
+        var to = window.getTrackTo(track);
+        var trackName = window.getTrackName(track);
+        var inner = '<a href="#" class="list-group-item active">' + trackName + '</a>';
         var i;
         for (i = Number(from); i <= Number(to); i++) {
-          var item = window.getDoor(window.selectedArea, i);
-          var values = item.split(" ");                
-                
-          if (values.length === 1) {
-            inner += '<button type="button" class="list-group-item ' + item + '" onclick="showModal(' + i + ');return false;">' + i + '</button>';        
-          } else {
-            var color = values[0];
-            var date = values[1];
-            var time = values[2];
-            var weekDay = values[3];
-            var content = i + '<span class="badge">' + date + ' ' + time + ' ' + weekDay + '</span>';
-            inner += '<button type="button" class="list-group-item ' + color + '" onclick="showModal(' + i + ');return false;">' + content + '</button>';
-          }
+          var value = window.getLane(window.selectedTrack, i);
+          inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + '</button>';        
         }
         
-        document.getElementById("alueet").innerHTML += inner;  
+        document.getElementById("radat").innerHTML += inner;  
       }
         
-      function showModal(door) {
-        window.selectedDoor = door;
-        document.getElementById('otsikko').innerHTML = 'Asunto ' + window.selectedDoor;
+      function showModal(lane) {
+        window.selectedLane = lane;
+        document.getElementById('otsikko').innerHTML = 'Väylä ' + window.selectedLane;
         $('#myModal').modal('show');
       }
         
       function merkkaa(color) {
-        window.setDoor(window.selectedArea, window.selectedDoor, color);
+        window.setLane(window.selectedTrack, window.selectedLane, color);
         window.location.reload(false);
       }
     </script>
