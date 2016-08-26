@@ -40,7 +40,7 @@
               <!-- filled in script -->
             </div>
             <div>
-              <p><button type="button" class="btn btn-default btn-block btn-lg" onclick="talleta()">Talleta tulos</button></p>
+              <p><button type="button" class="btn btn-default btn-block btn-lg" onclick="talleta()">Laske tulos</button></p>
             </div>
           </div>
           
@@ -59,11 +59,11 @@
           </div>
           <div class="modal-body">
             <div class="list-group lead">
-              <button type="button" class="list-group-item list-group-item-info" onclick="merkkaa('list-group-item-info')">Birdie</button>
-              <button type="button" class="list-group-item" onclick="merkkaa('')">Par</button>
-              <button type="button" class="list-group-item list-group-item-success" onclick="merkkaa('list-group-item-success')">Bogey</button>
-              <button type="button" class="list-group-item list-group-item-warning" onclick="merkkaa('list-group-item-warning')">Double</button>
-              <button type="button" class="list-group-item list-group-item-danger" onclick="merkkaa('list-group-item-danger')">Triple</button>
+              <button type="button" class="list-group-item birdie" onclick="merkkaa('birdie')">Birdie</button>
+              <button type="button" class="list-group-item par" onclick="merkkaa('par')">Par</button>
+              <button type="button" class="list-group-item bogey" onclick="merkkaa('bogey')">Bogey</button>
+              <button type="button" class="list-group-item double" onclick="merkkaa('double')">Double</button>
+              <button type="button" class="list-group-item triple" onclick="merkkaa('triple')">Triple</button>
             </div>
           </div>
           <div class="modal-footer">
@@ -89,7 +89,7 @@
         var i;
         for (i = Number(from); i <= Number(to); i++) {
           var value = window.getLane(window.selectedTrack, i);
-          inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + '</button>';        
+          inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + window.colorToName(value) + '</button>';        
         }
         
         document.getElementById('vaylat').innerHTML += inner;  

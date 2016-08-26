@@ -106,7 +106,7 @@ function getTrackResult(track) {
     return window.localStorage.getItem(key);
 }
 
-function getResultName(color) {
+function colorToName(color) {
     var result;
     
     switch (color) {
@@ -114,16 +114,16 @@ function getResultName(color) {
             result = 'Birdie';
             break;
         case 'list-group-item-success': 
-            result = 'Bogey';
+            result = 'Par';
             break;
         case 'list-group-item-warning': 
-            result = 'Double';
+            result = 'Bogey';
             break;
         case 'list-group-item-danger': 
-            result = 'Triple';
+            result = 'Double';
             break;
         default:
-            result = 'Par';
+            result = color;
             break;
     }
     
