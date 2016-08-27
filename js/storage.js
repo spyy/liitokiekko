@@ -134,6 +134,9 @@ function colorToNumber(color) {
     var result;
     
     switch (color) {
+        case 'eagle': 
+            result = -2;
+            break;
         case 'birdie': 
             result = -1;
             break;
@@ -148,6 +151,12 @@ function colorToNumber(color) {
             break;
         case 'triple': 
             result = 3;
+            break;
+        case 'quadruple': 
+            result = 4;
+            break;
+        case 'quintuple': 
+            result = 5;
             break;
         default:
             result = 999;
