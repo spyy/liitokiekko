@@ -71,7 +71,7 @@ function getTracks() {
         }
     }
     
-    return res;
+    return res.reverse();
 }
 
 
@@ -103,6 +103,17 @@ function setTrackResult(track, result) {
 
 function getTrackResult(track) {
     var key = track + '_result';
+    return window.localStorage.getItem(key);
+}
+
+function setTrackLatestResult(track, result) {
+    var key = track + '_latest';
+    var value = getDate() + ' ' + result;
+    window.localStorage.setItem(key, value);
+}
+
+function getTrackLatestResult(track) {
+    var key = track + '_latest';
     return window.localStorage.getItem(key);
 }
 
@@ -193,7 +204,7 @@ function createResult(track) {
     
     window.localStorage.setItem(key, value);
     
-    return value;
+    return result;
 }
 
 function getResults() {            
@@ -209,5 +220,5 @@ function getResults() {
         }
     }
     
-    return res;
+    return res.reverse();
 }
