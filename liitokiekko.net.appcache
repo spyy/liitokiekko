@@ -1,0 +1,29 @@
+CACHE MANIFEST
+bootstrap/css/bootstrap-theme.css
+bootstrap/css/bootstrap-theme.min.css
+bootstrap/css/bootstrap.css
+bootstrap/css/bootstrap.min.css
+bootstrap/css/cover.css
+bootstrap/css/cover2.css
+bootstrap/fonts/glyphicons-halflings-regular.eot
+bootstrap/fonts/glyphicons-halflings-regular.svg
+bootstrap/fonts/glyphicons-halflings-regular.ttf
+bootstrap/fonts/glyphicons-halflings-regular.woff
+bootstrap/fonts/glyphicons-halflings-regular.woff2
+bootstrap/js/bootstrap.js
+bootstrap/js/bootstrap.min.js
+js/storage.js
+js/jquery.min.js
+alue.html
+alueet.html
+favicon.ico
+index.html
+poista.html
+uusi.html
+https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js
+
+NETWORK:
+*
+
+FALLBACK:
+/ index.html
