@@ -5,8 +5,8 @@
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=63a17c3fb3488dfd8dc6c82d1725377b)
- * Config saved to config.json and https://gist.github.com/63a17c3fb3488dfd8dc6c82d1725377b
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=469f9a36417e68b3a055d582e1c59160)
+ * Config saved to config.json and https://gist.github.com/469f9a36417e68b3a055d582e1c59160
  */
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -4102,18 +4102,18 @@ a.thumbnail.active {
 }
 a.list-group-item,
 button.list-group-item {
-  color: #555555;
+  color: #ffffff;
 }
 a.list-group-item .list-group-item-heading,
 button.list-group-item .list-group-item-heading {
-  color: #333333;
+  color: #ffffff;
 }
 a.list-group-item:hover,
 button.list-group-item:hover,
 a.list-group-item:focus,
 button.list-group-item:focus {
   text-decoration: none;
-  color: #555555;
+  color: #ffffff;
   background-color: #10332b;
 }
 button.list-group-item {

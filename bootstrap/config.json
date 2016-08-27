@@ -300,9 +300,9 @@
     "@list-group-disabled-color": "@gray-light",
     "@list-group-disabled-bg": "@gray-lighter",
     "@list-group-disabled-text-color": "@list-group-disabled-color",
-    "@list-group-link-color": "#555",
+    "@list-group-link-color": "#fff",
     "@list-group-link-hover-color": "@list-group-link-color",
-    "@list-group-link-heading-color": "#333",
+    "@list-group-link-heading-color": "#fff",
     "@panel-bg": "#fff",
     "@panel-body-padding": "15px",
     "@panel-heading-padding": "10px 15px",
@@ -421,5 +421,5 @@
     "collapse.js",
     "scrollspy.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=63a17c3fb3488dfd8dc6c82d1725377b"
+  "customizerUrl": "http://getbootstrap.com/customize/?id=469f9a36417e68b3a055d582e1c59160"
 }
