@@ -134,24 +134,35 @@ function colorToNumber(color) {
     var result;
     
     switch (color) {
-        case 'list-group-item-info': 
+        case 'birdie': 
             result = -1;
             break;
-        case 'list-group-item-success': 
+        case 'par': 
+            result = 0;
+            break;
+        case 'bogey': 
             result = 1;
             break;
-        case 'list-group-item-warning': 
+        case 'double': 
             result = 2;
             break;
-        case 'list-group-item-danger': 
+        case 'triple': 
             result = 3;
             break;
         default:
-            result = 0;
+            result = 999;
             break;
     }
     
     return result;
+}
+
+function formatResult(result) {
+    if (result == 0) {
+        return 'par';
+    } else {
+        return result > 0 ? '+' + result : result;
+    }
 }
 
 function createResult(track) {
@@ -169,7 +180,7 @@ function createResult(track) {
     var name = getTrackName(track);
     var timestamp = Date.now();
     var key = timestamp.toString() + '___result';
-    var value = getDate() + ' ' + name + ': ' + result;
+    var value = getDate() + ' ' + name + ': ' + formatResult(result);
     
     window.localStorage.setItem(key, value);
     

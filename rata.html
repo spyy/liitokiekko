@@ -85,7 +85,7 @@
         var to = window.getTrackTo(track);
         var trackName = window.getTrackName(track);
         var trackResult = window.getTrackResult(track);
-        var inner = '<a href="#" class="list-group-item active">' + '<span class="badge">' + trackResult + '</span>' + trackName + '</a>';
+        var inner = '<a href="#" class="list-group-item active">' + '<span class="badge">22.10 +5</span>' + trackName + '</a>';
         var i;
         for (i = Number(from); i <= Number(to); i++) {
           var value = window.getLane(window.selectedTrack, i);
@@ -108,7 +108,7 @@
       
       function talleta() {
         var result = window.createResult(window.selectedTrack);
-        window.setTrackResult(result);
+        window.location.assign('tulokset.html');
       }
     </script>
     
