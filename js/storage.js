@@ -134,7 +134,7 @@ function colorToName(color) {
             result = 'Double';
             break;
         default:
-            result = color;
+            result = '';
             break;
     }
     
