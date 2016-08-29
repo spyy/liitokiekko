@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="fi" manifest="liitokiekko.net.appcache">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +52,7 @@
     </div>
       
     <!-- Modal -->
-    <div class="modal fade bs-example-modal-sm" id="myModal">
+    <div class="modal fade bs-example-modal-sm" id="myModal" data-show="false">
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
@@ -78,6 +78,8 @@
     <script>
       window.selectedLane = 0;
       window.selectedTrack = window.getSelectedTrack();
+      
+      //$('#myModal').modal('hide');
       
       printTrack();
       
@@ -106,6 +108,7 @@
         
       function merkkaa(color) {
         window.setLane(window.selectedTrack, window.selectedLane, color);
+        //$('#myModal').modal('hide');
         window.location.reload(false);
       }
       
