@@ -108,7 +108,7 @@ function getTrackResult(track) {
 
 function setTrackLatestResult(track, result) {
     var key = track + '_latest';
-    var value = getDate() + ' ' + result;
+    var value = getDate() + ' ' + formatResult(result);
     window.localStorage.setItem(key, value);
 }
 
