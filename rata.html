@@ -79,9 +79,11 @@
       window.selectedLane = 0;
       window.selectedTrack = window.getSelectedTrack();
       
-      //$('#myModal').modal('hide');
-      
-      printTrack();
+      if (window.selectedTrack) {
+        printTrack();  
+      } else {
+        window.location.assign('index.html');
+      }
       
       function printTrack() {
         var track = window.selectedTrack; 
@@ -94,7 +96,7 @@
         var i;
         for (i = Number(from); i <= Number(to); i++) {
           var value = window.getLane(window.selectedTrack, i);
-          inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + window.colorToName(value) + '</button>';        
+          inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + value + '</button>';        
         }
         
         document.getElementById('vaylat').innerHTML += inner;  
@@ -108,7 +110,6 @@
         
       function merkkaa(color) {
         window.setLane(window.selectedTrack, window.selectedLane, color);
-        //$('#myModal').modal('hide');
         window.location.reload(false);
       }
       
