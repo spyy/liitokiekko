@@ -96,7 +96,11 @@
         var i;
         for (i = Number(from); i <= Number(to); i++) {
           var value = window.getLane(window.selectedTrack, i);
-          inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + value + '</button>';        
+          if (value === 'empty') {
+            inner += '<button type="button" class="list-group-item" onclick="showModal(' + i + ');return false;">' + i + '</button>';        
+          } else {
+            inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + value + '</button>';        
+          }
         }
         
         document.getElementById('vaylat').innerHTML += inner;  

@@ -10,7 +10,7 @@ function createTrack(name, from, to) {
         
     var i;
     for (i = Number(from); i <= Number(to); i++) {
-        window.localStorage.setItem(key + '__' + i, ' ');                
+        window.localStorage.setItem(key + '__' + i, 'empty');                
     }
     
     return key.toString();
