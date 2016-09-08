@@ -1,3 +1,7 @@
 User-agent: *
 Disallow: /js/
 Disallow: /bootstrap/
+Disallow: /radat.html
+Disallow: /rata.html
+Disallow: /tulokset.html
+Disallow: /uusi.html
