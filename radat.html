@@ -42,7 +42,10 @@
 
           <div class="inner cover">
             <div class="lead" id="radat">
-              <!-- filled by script -->
+              <p class="lead">Aloita tekemällä rata.</p>
+              <p class="lead">
+                <a href="uusi.html" class="btn btn-lg btn-default">Uusi rata</a>
+              </p>
             </div>
           </div>
           
@@ -54,18 +57,24 @@
       
 
     <script>
-      var innerHTML = '';
-      
       var tracks = window.getTracks();
       
-      var i;
-      for (i = 0; i < tracks.length; i++) {
-        var track = tracks[i];
-        var name = window.getTrackName(tracks[i]);
-        innerHTML += '<p><button type="button" class="btn btn-lg btn-default" onclick="valitse(' + track + ')">' + name + '</button></p>';
+      if (tracks.length > 0) {
+        radat();
       }
+      
+      function radat() {
+        var innerHTML = '';
+        var i;
+        
+        for (i = 0; i < tracks.length; i++) {
+          var track = tracks[i];
+          var name = window.getTrackName(tracks[i]);
+          innerHTML += '<p><button type="button" class="btn btn-lg btn-default" onclick="valitse(' + track + ')">' + name + '</button></p>';
+        }
           
-      document.getElementById('radat').innerHTML = innerHTML;
+        document.getElementById('radat').innerHTML = innerHTML;
+      }
       
       function valitse(key) {
         window.setSelectedTrack(key);

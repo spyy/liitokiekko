@@ -65,7 +65,7 @@
           </div>
           <div class="modal-body">
             <div class="list-group lead">
-              <button type="button" class="list-group-item eagle" onclick="merkkaa('eagle')">Eagle</button>
+              <button type="button" class="list-group-item eagle" onclick="merkkaa('eagle')">-2</button>
               <button type="button" class="list-group-item birdie" onclick="merkkaa('birdie')">Birdie</button>
               <button type="button" class="list-group-item par" onclick="merkkaa('par')">Par</button>
               <button type="button" class="list-group-item bogey" onclick="merkkaa('bogey')">Bogey</button>
@@ -105,7 +105,7 @@
           if (value === 'empty') {
             inner += '<button type="button" class="list-group-item" onclick="showModal(' + i + ');return false;">' + i + '</button>';        
           } else {
-            inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + value + '</button>';        
+            inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + window.colorToText(value) + '</button>';        
           }
         }
         

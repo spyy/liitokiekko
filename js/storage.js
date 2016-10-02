@@ -117,30 +117,6 @@ function getTrackLatestResult(track) {
     return window.localStorage.getItem(key);
 }
 
-function colorToName(color) {
-    var result;
-    
-    switch (color) {
-        case 'list-group-item-info': 
-            result = 'Birdie';
-            break;
-        case 'list-group-item-success': 
-            result = 'Par';
-            break;
-        case 'list-group-item-warning': 
-            result = 'Bogey';
-            break;
-        case 'list-group-item-danger': 
-            result = 'Double';
-            break;
-        default:
-            result = '';
-            break;
-    }
-    
-    return result;
-}
-
 function colorToNumber(color) {
     var result;
     
@@ -171,6 +147,42 @@ function colorToNumber(color) {
             break;
         default:
             result = 999;
+            break;
+    }
+    
+    return result;
+}
+
+function colorToText(color) {
+    var result;
+    
+    switch (color) {
+        case 'eagle': 
+            result = '-2';
+            break;
+        case 'birdie': 
+            result = 'Birdie';
+            break;
+        case 'par': 
+            result = 'Par';
+            break;
+        case 'bogey': 
+            result = 'Bogey';
+            break;
+        case 'double': 
+            result = '+2';
+            break;
+        case 'triple': 
+            result = '+3';
+            break;
+        case 'quadruple': 
+            result = '+4';
+            break;
+        case 'quintuple': 
+            result = '+5';
+            break;
+        default:
+            result = color;
             break;
     }
     
