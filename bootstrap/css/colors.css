@@ -32,12 +32,12 @@ button.eagle.active:focus {
   border-color: #31708f;
 }
 .par {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
+  color: #3c763d;
+  background-color: #dff0d8;
 }
 a.par,
 button.par {
-  color: #8a6d3b;
+  color: #3c763d;
 }
 a.par .list-group-item-heading,
 button.par .list-group-item-heading {
@@ -47,8 +47,8 @@ a.par:hover,
 button.par:hover,
 a.par:focus,
 button.par:focus {
-  color: #8a6d3b;
-  background-color: #faf2cc;
+  color: #3c763d;
+  background-color: #d0e9c6;
 }
 a.par.active,
 button.par.active,
@@ -57,8 +57,8 @@ button.par.active:hover,
 a.par.active:focus,
 button.par.active:focus {
   color: #fff;
-  background-color: #8a6d3b;
-  border-color: #8a6d3b;
+  background-color: #3c763d;
+  border-color: #3c763d;
 }
 .birdie {
   color: #31708f;
