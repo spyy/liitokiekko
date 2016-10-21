@@ -1,17 +1,9 @@
 {
-	"name": "liitokiekko.net",
+	"name": "Liitokiekko",
 	"icons": [
-		{
-			"src": "\/android-chrome-192x192.png",
-			"sizes": "192x192",
-			"type": "image\/png"
-		},
-		{
-			"src": "\/android-chrome-512x512.png",
-			"sizes": "512x512",
-			"type": "image\/png"
-		}
 	],
-	"theme_color": "#10332b",
-	"display": "standalone"
+	"theme_color": "#fffff",
+	"start_url": "http:\/\/http:\/\/www.liitokiekko.net\/index.html",
+	"display": "standalone",
+	"orientation": "portrait"
 }
