@@ -2,7 +2,7 @@
 	"name": "Liitokiekko",
 	"icons": [
 	],
-	"theme_color": "#fffff",
+	"background_color": "#fffff",
 	"start_url": "http:\/\/http:\/\/www.liitokiekko.net\/index.html",
 	"display": "standalone",
 	"orientation": "portrait"
