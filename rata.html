@@ -3,36 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#10332b">
-    
+
     <title>Frisbeegolf</title>
-    
+
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="bootstrap/css/cover2.css" rel="stylesheet" type="text/css">
     <link href="bootstrap/css/colors.css" rel="stylesheet" type="text/css">
-    
+
     <script type="text/javascript" src="js/storage.js"></script>
   </head>
 
   <body>
-    
+
     <div class="site-wrapper">
-      
+
       <div class="site-wrapper-inner">
-        
+
         <div class="cover-container">
-          
+
           <div class="masthead">
             <div class="inner">
               <h3 class="masthead-brand" id="brand">liitokiekko.net</h3>
               <nav>
-                <ul class="nav masthead-nav">                  
+                <ul class="nav masthead-nav">
                   <li><a href="uusi.html">Uusi</a></li>
                   <li><a href="tulokset.html">Tulokset</a></li>
                   <li><a href="radat.html">Radat</a></li>
@@ -40,7 +40,7 @@
               </nav>
             </div>
           </div>
-          
+
           <div class="inner cover">
             <div class="list-group lead text-left" id="vaylat">
               <!-- filled in script -->
@@ -49,13 +49,13 @@
               <p><button type="button" class="btn btn-default btn-block btn-lg" onclick="talleta()">Laske tulos</button></p>
             </div>
           </div>
-          
+
         </div>
-        
+
       </div>
-      
+
     </div>
-      
+
     <!-- Modal -->
     <div class="modal fade bs-example-modal-sm" id="myModal" data-show="false">
       <div class="modal-dialog modal-sm">
@@ -64,14 +64,14 @@
             <h4 class="modal-title" id="otsikko" style="color:#325e60"></h4>
           </div>
           <div class="modal-body">
-            <div class="list-group lead">
-              <button type="button" class="list-group-item eagle" onclick="merkkaa('eagle')">-2</button>
-              <button type="button" class="list-group-item birdie" onclick="merkkaa('birdie')">Birdie</button>
-              <button type="button" class="list-group-item par" onclick="merkkaa('par')">Par</button>
-              <button type="button" class="list-group-item bogey" onclick="merkkaa('bogey')">Bogey</button>
-              <button type="button" class="list-group-item double" onclick="merkkaa('double')">+2</button>
-              <button type="button" class="list-group-item triple" onclick="merkkaa('triple')">+3</button>
-              <button type="button" class="list-group-item quadruple" onclick="merkkaa('quadruple')">+4</button>
+            <div class="lead">
+              <button type="button" class="btn btn-block btn-lg eagle" onclick="merkkaa('eagle')">-2</button>
+              <button type="button" class="btn btn-block btn-lg birdie" onclick="merkkaa('birdie')">-1</button>
+              <button type="button" class="btn btn-block btn-lg par" onclick="merkkaa('par')">Par</button>
+              <button type="button" class="btn btn-block btn-lg bogey" onclick="merkkaa('bogey')">+1</button>
+              <button type="button" class="btn btn-block btn-lg double" onclick="merkkaa('double')">+2</button>
+              <button type="button" class="btn btn-block btn-lg triple" onclick="merkkaa('triple')">+3</button>
+              <button type="button" class="btn btn-block btn-lg quadruple" onclick="merkkaa('quadruple')">+4</button>
             </div>
           </div>
           <div class="modal-footer">
@@ -80,19 +80,19 @@
         </div>
       </div>
     </div>
-              
+
     <script>
       window.selectedLane = 0;
       window.selectedTrack = window.getSelectedTrack();
-      
+
       if (window.selectedTrack) {
-        printTrack();  
+        printTrack();
       } else {
         window.location.assign('index.html');
       }
-      
+
       function printTrack() {
-        var track = window.selectedTrack; 
+        var track = window.selectedTrack;
         var from = window.getTrackFrom(track);
         var to = window.getTrackTo(track);
         var trackName = window.getTrackName(track);
@@ -103,36 +103,36 @@
         for (i = Number(from); i <= Number(to); i++) {
           var value = window.getLane(window.selectedTrack, i);
           if (value === 'empty') {
-            inner += '<button type="button" class="list-group-item" onclick="showModal(' + i + ');return false;">' + i + '</button>';        
+            inner += '<button type="button" class="list-group-item" onclick="showModal(' + i + ');return false;">' + i + '</button>';
           } else {
-            inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + window.colorToText(value) + '</button>';        
+            inner += '<button type="button" class="list-group-item ' + value + '" onclick="showModal(' + i + ');return false;">' + i + ' ' + window.colorToText(value) + '</button>';
           }
         }
-        
-        document.getElementById('vaylat').innerHTML += inner;  
+
+        document.getElementById('vaylat').innerHTML += inner;
       }
-        
+
       function showModal(lane) {
         window.selectedLane = lane;
         document.getElementById('otsikko').innerHTML = 'Väylä ' + window.selectedLane;
         $('#myModal').modal('show');
       }
-        
+
       function merkkaa(color) {
         window.setLane(window.selectedTrack, window.selectedLane, color);
         window.location.reload(false);
       }
-      
+
       function talleta() {
         var result = window.createResult(window.selectedTrack);
         window.setTrackLatestResult(window.selectedTrack, result);
         window.location.assign('tulokset.html');
       }
     </script>
-    
+
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-      
+
   </body>
 </html>

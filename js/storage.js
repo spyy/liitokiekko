@@ -7,12 +7,12 @@ function createTrack(name, from, to) {
     window.localStorage.setItem(key + '_from', from);
     window.localStorage.setItem(key + '_to', to);
     window.localStorage.setItem(key + '_result', '');
-        
+
     var i;
     for (i = Number(from); i <= Number(to); i++) {
-        window.localStorage.setItem(key + '__' + i, 'empty');                
+        window.localStorage.setItem(key + '__' + i, 'empty');
     }
-    
+
     return key.toString();
 }
 
@@ -44,7 +44,7 @@ function getDate() {
     var month = d.getMonth() + 1;
     day = day > 9 ? day : '0' + day;
     month = month > 9 ? month : '0' + month;
-    
+
     return day + '.' + month;
 }
 
@@ -55,22 +55,22 @@ function getDateAndTime() {
     var hours = d.getHours();
     var minutes = d.getMinutes();
     minutes = minutes > 9 ? minutes : '0' + minutes;
-    
+
     return day + '.' + month + ' ' + hours + ':' + minutes;
 }
 
-function getTracks() {            
+function getTracks() {
     var res = [];
-    
+
     var i;
     for (i = 0; i < window.localStorage.length; i++) {
         var key = window.localStorage.key(i);
-        
+
         if (key.search('_') === -1) {
             res.push(key);
         }
     }
-    
+
     return res.reverse();
 }
 
@@ -119,73 +119,73 @@ function getTrackLatestResult(track) {
 
 function colorToNumber(color) {
     var result;
-    
+
     switch (color) {
-        case 'eagle': 
+        case 'eagle':
             result = -2;
             break;
-        case 'birdie': 
+        case 'birdie':
             result = -1;
             break;
-        case 'par': 
+        case 'par':
             result = 0;
             break;
-        case 'bogey': 
+        case 'bogey':
             result = 1;
             break;
-        case 'double': 
+        case 'double':
             result = 2;
             break;
-        case 'triple': 
+        case 'triple':
             result = 3;
             break;
-        case 'quadruple': 
+        case 'quadruple':
             result = 4;
             break;
-        case 'quintuple': 
+        case 'quintuple':
             result = 5;
             break;
         default:
             result = 999;
             break;
     }
-    
+
     return result;
 }
 
 function colorToText(color) {
     var result;
-    
+
     switch (color) {
-        case 'eagle': 
+        case 'eagle':
             result = '-2';
             break;
-        case 'birdie': 
-            result = 'Birdie';
+        case 'birdie':
+            result = '-1';
             break;
-        case 'par': 
+        case 'par':
             result = 'Par';
             break;
-        case 'bogey': 
-            result = 'Bogey';
+        case 'bogey':
+            result = '+1';
             break;
-        case 'double': 
+        case 'double':
             result = '+2';
             break;
-        case 'triple': 
+        case 'triple':
             result = '+3';
             break;
-        case 'quadruple': 
+        case 'quadruple':
             result = '+4';
             break;
-        case 'quintuple': 
+        case 'quintuple':
             result = '+5';
             break;
         default:
             result = color;
             break;
     }
-    
+
     return result;
 }
 
@@ -202,35 +202,35 @@ function createResult(track) {
     var from = getTrackFrom(track);
     var to = getTrackTo(track);
     var i;
-    
+
     for (i = Number(from); i <= Number(to); i++) {
       var color = getLane(track, i);
       var number = colorToNumber(color);
       result += number;
     }
-    
+
     var name = getTrackName(track);
     var timestamp = Date.now();
     var key = timestamp.toString() + '___result';
     var value = getDate() + ' ' + name + ': ' + formatResult(result);
-    
+
     window.localStorage.setItem(key, value);
-    
+
     return result;
 }
 
-function getResults() {            
+function getResults() {
     var res = [];
-    
+
     var i;
     for (i = 0; i < window.localStorage.length; i++) {
         var key = window.localStorage.key(i);
-        
+
         if (key.search('___result') != -1) {
             var value = window.localStorage.getItem(key);
             res.push(value);
         }
     }
-    
+
     return res.reverse();
 }

@@ -89,13 +89,14 @@ button.birdie.active:focus {
   background-color: #31708f;
   border-color: #31708f;
 }
+
 .bogey {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
+  color: #a94442;
+  background-color: #f2dede;
 }
 a.bogey,
 button.bogey {
-  color: #8a6d3b;
+  color: #a94442;
 }
 a.bogey .list-group-item-heading,
 button.bogey .list-group-item-heading {
@@ -105,8 +106,8 @@ a.bogey:hover,
 button.bogey:hover,
 a.bogey:focus,
 button.bogey:focus {
-  color: #8a6d3b;
-  background-color: #faf2cc;
+  color: #a94442;
+  background-color: #ebcccc;
 }
 a.bogey.active,
 button.bogey.active,
@@ -115,9 +116,10 @@ button.bogey.active:hover,
 a.bogey.active:focus,
 button.bogey.active:focus {
   color: #fff;
-  background-color: #8a6d3b;
-  border-color: #8a6d3b;
+  background-color: #a94442;
+  border-color: #a94442;
 }
+
 .double {
   color: #a94442;
   background-color: #f2dede;
@@ -234,4 +236,3 @@ button.quintuple.active:focus {
   background-color: #3c763d;
   border-color: #3c763d;
 }
-
