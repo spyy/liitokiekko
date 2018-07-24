@@ -1,7 +1,39 @@
 
 
 
+
+function createTrack2(name, to) {
+    var track = {
+      name: name,
+      routeCount: Number(to),
+      routes:[],
+      record: 999,
+      tempScore: 0,
+      latest: {
+        createdAt: Date.now(),
+        score: 999
+      },
+      createdAt: Date.now()
+    };
+
+    var i;
+    for (i = 0; i < Number(to); i++) {
+        track.routes.push('empty');
+    }
+
+    window.localStorage.setItem(name, JSON.stringify(track));
+}
+
+
+function getTrack(key) {
+    var track = window.localStorage.getItem(key);
+
+    return JSON.parse(window.localStorage.getItem(track));
+}
+
 function createTrack(name, from, to) {
+    createTrack2(name, to);
+
     var key = Date.now();
     window.localStorage.setItem(key.toString(), name);
     window.localStorage.setItem(key + '_from', from);
@@ -66,7 +98,7 @@ function getTracks() {
     for (i = 0; i < window.localStorage.length; i++) {
         var key = window.localStorage.key(i);
 
-        if (key.search('_') === -1) {
+        if (key.search(/_/) === -1 && Number.isInteger(Number(key))) {
             res.push(key);
         }
     }
@@ -84,6 +116,12 @@ function getSelectedTrack() {
     return window.sessionStorage.selectedTrack;
 }
 
+function setRoute(key, route, value) {
+    var track = getTrack(key);
+
+    track.routes[Number(route) - 1] = value;
+    window.localStorage.setItem(track.name, JSON.stringify(track));
+}
 
 function setLane(track, lane, value) {
     var key = track + '__' + lane;
@@ -107,9 +145,24 @@ function getTrackResult(track) {
 }
 
 function setTrackLatestResult(track, result) {
+    setTrackLatestScore(track, result);
+
     var key = track + '_latest';
     var value = getDate() + ' ' + formatResult(result);
     window.localStorage.setItem(key, value);
+}
+
+function setTrackLatestScore(key, score) {
+    var track = getTrack(key);
+
+    track.latest.createdAt = Date.now();
+    track.latest.score = score;
+
+    if (score < track.record) {
+        track.record = score;
+    }
+
+    window.localStorage.setItem(track.name, JSON.stringify(track));
 }
 
 function getTrackLatestResult(track) {
@@ -197,7 +250,30 @@ function formatResult(result) {
     }
 }
 
+function createResult2(key) {
+    var track = getTrack(key);
+    var result = {
+        name: track.name,
+        routes: track.routes,
+        score: 0,
+        createdAt: Date.now()
+    };
+
+    track.routes.forEach(function(color) {
+      var number = colorToNumber(color);
+      result.score += number;
+    });
+
+
+    var timestamp = Date.now();
+    var key = timestamp.toString() + '_result';
+
+    window.localStorage.setItem(key, JSON.stringify(result));
+}
+
 function createResult(track) {
+    createResult2(track);
+
     var result = 0;
     var from = getTrackFrom(track);
     var to = getTrackTo(track);
@@ -226,7 +302,7 @@ function getResults() {
     for (i = 0; i < window.localStorage.length; i++) {
         var key = window.localStorage.key(i);
 
-        if (key.search('___result') != -1) {
+        if (key.search(/___result/) !== -1) {
             var value = window.localStorage.getItem(key);
             res.push(value);
         }
