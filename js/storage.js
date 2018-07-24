@@ -28,7 +28,7 @@ function createTrack2(name, to) {
 function getTrack(key) {
     var track = window.localStorage.getItem(key);
 
-    return JSON.parse(window.localStorage.getItem(track));
+    return track === null ? null: JSON.parse(window.localStorage.getItem(track));
 }
 
 function createTrack(name, from, to) {
@@ -119,8 +119,10 @@ function getSelectedTrack() {
 function setRoute(key, route, value) {
     var track = getTrack(key);
 
-    track.routes[Number(route) - 1] = value;
-    window.localStorage.setItem(track.name, JSON.stringify(track));
+    if (track !== null) {
+      track.routes[Number(route) - 1] = value;
+      window.localStorage.setItem(track.name, JSON.stringify(track));
+    }
 }
 
 function setLane(track, lane, value) {
