@@ -9,10 +9,7 @@ function createTrack2(name, to) {
       routes:[],
       record: 999,
       tempScore: 0,
-      latest: {
-        createdAt: Date.now(),
-        score: 999
-      },
+      score: 999,
       createdAt: Date.now()
     };
 
@@ -147,24 +144,9 @@ function getTrackResult(track) {
 }
 
 function setTrackLatestResult(track, result) {
-    setTrackLatestScore(track, result);
-
     var key = track + '_latest';
     var value = getDate() + ' ' + formatResult(result);
     window.localStorage.setItem(key, value);
-}
-
-function setTrackLatestScore(key, score) {
-    var track = getTrack(key);
-
-    track.latest.createdAt = Date.now();
-    track.latest.score = score;
-
-    if (score < track.record) {
-        track.record = score;
-    }
-
-    window.localStorage.setItem(track.name, JSON.stringify(track));
 }
 
 function getTrackLatestResult(track) {
@@ -252,30 +234,37 @@ function formatResult(result) {
     }
 }
 
-function createResult2(key) {
-    var track = getTrack(key);
-    var result = {
-        name: track.name,
-        routes: track.routes,
-        score: 0,
-        createdAt: Date.now()
-    };
-
+function doSaveResult(track) {
+    // update track
     track.routes.forEach(function(color) {
       var number = colorToNumber(color);
-      result.score += number;
+      track.score += number;
     });
 
+    if (track.score < track.record) {
+        track.record = track.score;
+    }
 
+    window.localStorage.setItem(track.name, JSON.stringify(track));
+
+    // save result document
     var timestamp = Date.now();
     var key = timestamp.toString() + '_result';
 
-    window.localStorage.setItem(key, JSON.stringify(result));
+    track.createdAt = Date.now();
+
+    window.localStorage.setItem(key, JSON.stringify(track));
+}
+
+function saveResult(key) {
+    var track = getTrack(key);
+
+    if (track !== null) {
+        doSaveResult(track);
+    }
 }
 
 function createResult(track) {
-    createResult2(track);
-
     var result = 0;
     var from = getTrackFrom(track);
     var to = getTrackTo(track);

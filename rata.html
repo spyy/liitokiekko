@@ -127,6 +127,7 @@
       function talleta() {
         var result = window.createResult(window.selectedTrack);
         window.setTrackLatestResult(window.selectedTrack, result);
+        window.saveResult(window.selectedTrack);
         window.location.assign('tulokset.html');
       }
     </script>
