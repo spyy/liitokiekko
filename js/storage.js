@@ -236,6 +236,7 @@ function formatResult(result) {
 
 function doSaveResult(track) {
     // update track
+    track.score = 0;
     track.routes.forEach(function(color) {
       var number = colorToNumber(color);
       track.score += number;
